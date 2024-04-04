@@ -17,6 +17,3 @@
 4. Open the **main.py** file and press "Run".
 5. Open the **test_report.html** file to view the test run details.
 
-
-
-
