@@ -52,24 +52,12 @@ pipeline {
             }
         }
 
-        stage('Switch to Main Branch') {
+        stage('Merge into Main') {
             steps {
                 // Switch to the main branch
                 sh 'git checkout main'
-            }
-        }
-
-        stage('Merge into Main') {
-            steps {
                 // Merge feature branch into main
                 sh 'git merge feature1'
-            }
-        }
-
-        stage('Delete Feature Branch') {
-            steps {
-                // Delete the feature1 branch
-                sh "git push origin --delete feature1"
             }
         }
     }
