@@ -42,8 +42,17 @@ pipeline {
                 sh './venv/bin/python3 main.py'
             }
         }
-        
-        stage('Deploy on Main') {
+
+        stage('Commit Changes on Feature Branch') {
+            steps {
+                // Add all changes to the staging area
+                sh 'git add .'
+                // Commit changes on the feature branch
+                sh 'git commit -m "Commit changes on feature1 branch"'
+            }
+        }
+
+                stage('Deploy on Main') {
             steps {
                 // Merge feature branch to main
                 sh 'git checkout main'
