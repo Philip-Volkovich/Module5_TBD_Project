@@ -50,3 +50,4 @@ def test_check_validity_of_min_and_max_salary(cursor):
     cursor.execute(query)
     result = cursor.fetchall()
     assert result == []
+
