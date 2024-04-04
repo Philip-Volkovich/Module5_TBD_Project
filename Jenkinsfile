@@ -36,6 +36,18 @@ pipeline {
             }
         }
 
+        stage('Rebase Feature Branch onto Main') {
+            steps {
+                // Checkout main branch and pull latest changes
+                sh 'git checkout main'
+                sh 'git pull'
+
+                // Checkout feature1 branch and rebase onto main
+                sh 'git checkout feature1'
+                sh 'git rebase main'
+            }
+        }
+
         stage('Testing') {
             steps {
                 // Run tests on the feature branch
@@ -43,17 +55,18 @@ pipeline {
             }
         }
 
-        stage('Rebase Feature Branch onto Main') {
+        stage('Commit Changes on Feature Branch') {
             steps {
-                // Rebase feature branch onto main
-                sh 'git checkout feature1'
-                sh 'git rebase main'
+                // Add all changes to the staging area
+                sh 'git add .'
+                // Commit changes on the feature branch
+                sh 'git commit -m "Commit changes on feature1 branch"'
             }
         }
 
-        stage('Update Main Branch') {
+        stage('Merge into Main') {
             steps {
-                // Update main branch with the rebased feature branch
+                // Merge feature branch into main
                 sh 'git checkout main'
                 sh 'git merge feature1'
             }
