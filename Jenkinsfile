@@ -64,10 +64,16 @@ pipeline {
             }
         }
 
+        stage('Switch to Main Branch') {
+            steps {
+                // Switch to the main branch
+                sh 'git checkout main'
+            }
+        }
+
         stage('Merge into Main') {
             steps {
                 // Merge feature branch into main
-                sh 'git checkout main'
                 sh 'git merge feature1'
             }
         }
